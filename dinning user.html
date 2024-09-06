@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>School Dining Management - User Panel</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #4a90e2;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        header h1 {
+            margin: 0;
+            font-size: 1.8em;
+        }
+        main {
+            padding: 20px;
+            margin: 0 auto;
+            background: #ffffff;
+            max-width: 1200px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+            border-bottom: 3px solid #4a90e2;
+            padding-bottom: 5px;
+        }
+        .slider {
+            margin-bottom: 40px;
+        }
+        .slider img {
+            width: 100%;
+            max-height: 400px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+        .routine-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        .routine-table th, .routine-table td {
+            padding: 12px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+        .staff-list, .attendance-list {
+            margin-bottom: 40px;
+        }
+        .staff-item, .attendance-item {
+            margin-bottom: 10px;
+            background: #f1f1f1;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .rules {
+            background: #e9f5fe;
+            padding: 15px;
+            border-left: 5px solid #4a90e2;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .attendance-list {
+            background-color: #fafafa;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>School Dining Management - User Panel</h1>
+    </header>
+
+    <main>
+
+        <!-- Text Slider -->
+        <section class="slider">
+            <h2>Updates</h2>
+            <div class="text-slider">
+                <!-- Text slider content will be added dynamically -->
+            </div>
+        </section>
+
+        <!-- Image Slider -->
+        <section class="slider">
+            <h2>Dining Area Photos</h2>
+            <div class="image-slider">
+                <!-- Image slider content will be added dynamically -->
+            </div>
+        </section>
+
+        <!-- Dining Information & Routine -->
+        <section>
+            <h2>About Dining</h2>
+            <p id="dining-info">Loading dining info...</p>
+            
+            <h2>Dining Routine</h2>
+            <table class="routine-table">
+                <thead>
+                    <tr>
+                        <th>Meal</th>
+                        <th>Time</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Breakfast</td>
+                        <td id="breakfast-time">Loading...</td>
+                    </tr>
+                    <tr>
+                        <td>Lunch</td>
+                        <td id="lunch-time">Loading...</td>
+                    </tr>
+                    <tr>
+                        <td>Dinner</td>
+                        <td id="dinner-time">Loading...</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Staff Information -->
+        <section class="staff-list">
+            <h2>Dining Staff</h2>
+            <div id="staff-list">Loading staff...</div>
+        </section>
+
+        <!-- Dining Rules -->
+        <section>
+            <h2>Dining Rules</h2>
+            <div class="rules" id="dining-rules">Loading rules...</div>
+        </section>
+
+        <!-- Attendance -->
+        <section class="attendance-list">
+            <h2>Student Attendance</h2>
+            <div id="student-attendance">Loading student attendance...</div>
+        </section>
+
+        <section class="attendance-list">
+            <h2>Staff Attendance</h2>
+            <div id="staff-attendance">Loading staff attendance...</div>
+        </section>
+
+    </main>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.0/firebase-app.js";
+        import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/9.6.0/firebase-database.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyCGOWOPnqw_fN09nhKJFLx-AtsEC39DiC0",
+            authDomain: "digital-hagira.firebaseapp.com",
+            databaseURL: "https://digital-hagira-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "digital-hagira",
+            storageBucket: "digital-hagira.appspot.com",
+            messagingSenderId: "29482319758",
+            appId: "1:29482319758:web:3b0d0bf0c81467ca866edf",
+            measurementId: "G-NR7P6G5R0T"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase(app);
+
+        // Load Text Slider
+        const textSliderRef = ref(db, 'text-slider');
+        onValue(textSliderRef, (snapshot) => {
+            const textSliderDiv = document.querySelector('.text-slider');
+            textSliderDiv.innerHTML = '';
+            snapshot.forEach((childSnapshot) => {
+                const textItem = childSnapshot.val().text;
+                const p = document.createElement('p');
+                p.textContent = textItem;
+                textSliderDiv.appendChild(p);
+            });
+        });
+
+        // Load Image Slider
+        const imageSliderRef = ref(db, 'image-slider');
+        onValue(imageSliderRef, (snapshot) => {
+            const imageSliderDiv = document.querySelector('.image-slider');
+            imageSliderDiv.innerHTML = '';
+            snapshot.forEach((childSnapshot) => {
+                const imageUrl = childSnapshot.val().imageUrl;
+                const img = document.createElement('img');
+                img.src = imageUrl;
+                img.alt = 'Dining Photo';
+                imageSliderDiv.appendChild(img);
+            });
+        });
+
+        // Load Dining Info & Routine
+        const diningInfoRef = ref(db, 'dining-info');
+        onValue(diningInfoRef, (snapshot) => {
+            const data = snapshot.val();
+            document.getElementById('dining-info').textContent = data.info;
+            document.getElementById('breakfast-time').textContent = data.breakfast;
+            document.getElementById('lunch-time').textContent = data.lunch;
+            document.getElementById('dinner-time').textContent = data.dinner;
+        });
+
+        // Load Staff Information
+        const staffRef = ref(db, 'staff');
+        onValue(staffRef, (snapshot) => {
+            const staffListDiv = document.getElementById('staff-list');
+            staffListDiv.innerHTML = '';
+            snapshot.forEach((childSnapshot) => {
+                const staff = childSnapshot.val();
+                const div = document.createElement('div');
+                div.classList.add('staff-item');
+                div.textContent = `${staff.name} - ${staff.position}`;
+                staffListDiv.appendChild(div);
+            });
+        });
+
+        // Load Dining Rules
+        const rulesRef = ref(db, 'dining-rules');
+        onValue(rulesRef, (snapshot) => {
+            document.getElementById('dining-rules').textContent = snapshot.val().rules;
+        });
+
+        // Load Student Attendance
+        const studentAttendanceRef = ref(db, 'attendance/student');
+        onValue(studentAttendanceRef, (snapshot) => {
+            const studentAttendanceDiv = document.getElementById('student-attendance');
+            studentAttendanceDiv.innerHTML = '';
+            snapshot.forEach((childSnapshot) => {
+                const attendance = childSnapshot.val();
+                const div = document.createElement('div');
+                div.classList.add('attendance-item');
+                div.textContent = `${attendance.name} - ${attendance.status}`;
+                studentAttendanceDiv.appendChild(div);
+            });
+        });
+
+        // Load Staff Attendance
+        const staffAttendanceRef = ref(db, 'attendance/staff');
+        onValue(staffAttendanceRef, (snapshot) => {
+            const staffAttendanceDiv = document.getElementById('staff-attendance');
+            staffAttendanceDiv.innerHTML = '';
+            snapshot.forEach((childSnapshot) => {
+                const attendance = childSnapshot.val();
+                const div = document.createElement('div');
+                div.classList.add('attendance-item');
+                div.textContent = `${attendance.name} - ${attendance.status}`;
+                staffAttendanceDiv.appendChild(div);
+            });
+        });
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('.image-slider').slick({
+                dots: true,
+                infinite: true,
+                speed: 300,
+                slidesToShow: 1,
+                adaptiveHeight: true
+            });
+
+            $('.text-slider').slick({
+                dots: true,
+                infinite: true,
+                speed: 300,
+                slidesToShow: 1,
+                adaptiveHeight: true
+            });
+        });
+    </script>
+
+</body>
+</html>

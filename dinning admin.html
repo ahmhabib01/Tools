@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>School Dining Management - Admin Panel</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e9ecef;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #343a40;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        main {
+            padding: 20px;
+            margin: 20px auto;
+            background: #fff;
+            width: 90%;
+            max-width: 1200px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            border-bottom: 2px solid #343a40;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        .slider img {
+            width: 100%;
+            max-height: 300px;
+            object-fit: cover;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-group input, .form-group textarea, .form-group select {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .form-group button {
+            padding: 10px 15px;
+            background-color: #007bff;
+            border: none;
+            color: white;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .form-group button:hover {
+            background-color: #0056b3;
+        }
+        .section {
+            margin-bottom: 40px;
+        }
+        .item-list {
+            margin-bottom: 20px;
+        }
+        .item {
+            padding: 10px;
+            border: 1px solid #ddd;
+            margin-bottom: 10px;
+            background-color: #f8f9fa;
+            border-radius: 4px;
+        }
+        .item button {
+            background-color: #dc3545;
+            border: none;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .item button:hover {
+            background-color: #c82333;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>School Dining Management - Admin Panel</h1>
+    </header>
+
+    <main>
+
+        <!-- Text Slider Management -->
+        <section class="section">
+            <h2>Manage Text Slider</h2>
+            <form id="text-slider-form">
+                <div class="form-group">
+                    <label for="text">New Text:</label>
+                    <input type="text" id="text" required>
+                </div>
+                <div class="form-group">
+                    <button type="submit">Add Text</button>
+                </div>
+            </form>
+            <div id="text-slider-list" class="item-list">Loading...</div>
+        </section>
+
+        <!-- Image Slider Management -->
+        <section class="section">
+            <h2>Manage Image Slider</h2>
+            <form id="image-slider-form">
+                <div class="form-group">
+                    <label for="image-url">Image URL:</label>
+                    <input type="url" id="image-url" required>
+                </div>
+                <div class="form-group">
+                    <button type="submit">Add Image</button>
+                </div>
+            </form>
+            <div id="image-slider-list" class="item-list">Loading...</div>
+        </section>
+
+        <!-- Dining Information -->
+        <section class="section">
+            <h2>Update Dining Information</h2>
+            <form id="dining-info-form">
+                <div class="form-group">
+                    <label for="dining-info">About Dining:</label>
+                    <textarea id="dining-info" rows="4" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="breakfast-time">Breakfast Time:</label>
+                    <input type="text" id="breakfast-time" required>
+                </div>
+                <div class="form-group">
+                    <label for="lunch-time">Lunch Time:</label>
+                    <input type="text" id="lunch-time" required>
+                </div>
+                <div class="form-group">
+                    <label for="dinner-time">Dinner Time:</label>
+                    <input type="text" id="dinner-time" required>
+                </div>
+                <div class="form-group">
+                    <button type="submit">Update Info</button>
+                </div>
+            </form>
+        </section>
+
+        <!-- Dining Rules -->
+        <section class="section">
+            <h2>Update Dining Rules</h2>
+            <form id="dining-rules-form">
+                <div class="form-group">
+                    <label for="dining-rules">Dining Rules:</label>
+                    <textarea id="dining-rules" rows="4" required></textarea>
+                </div>
+                <div class="form-group">
+                    <button type="submit">Update Rules</button>
+                </div>
+            </form>
+        </section>
+
+        <!-- Staff Management -->
+        <section class="section">
+            <h2>Manage Dining Staff</h2>
+            <form id="staff-form">
+                <div class="form-group">
+                    <label for="staff-name">Staff Name:</label>
+                    <input type="text" id="staff-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="staff-position">Position:</label>
+                    <input type="text" id="staff-position" required>
+                </div>
+                <div class="form-group">
+                    <button type="submit">Add Staff</button>
+                </div>
+            </form>
+            <div id="staff-list" class="item-list">Loading...</div>
+        </section>
+
+        <!-- Routine Management -->
+        <section class="section">
+            <h2>Update Dining Routine</h2>
+            <form id="routine-form">
+                <div class="form-group">
+                    <label for="meal">Meal:</label>
+                    <select id="meal" required>
+                        <option value="breakfast">Breakfast</option>
+                        <option value="lunch">Lunch</option>
+                        <option value="dinner">Dinner</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="meal-time">Time:</label>
+                    <input type="text" id="meal-time" required>
+                </div>
+                <div class="form-group">
+                    <button type="submit">Update Routine</button>
+                </div>
+            </form>
+            <table id="routine-table" class="item-list">
+                <thead>
+                    <tr>
+                        <th>Meal</th>
+                        <th>Time</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Routine items will be added dynamically -->
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Attendance Management -->
+        <section class="section">
+            <h2>Manage Attendance</h2>
+            <div class="form-group">
+                <button id="show-student-attendance">Show Student Attendance</button>
+                <button id="show-staff-attendance">Show Staff Attendance</button>
+            </div>
+            <div id="attendance-list" class="item-list">Loading...</div>
+        </section>
+
+    </main>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.0/firebase-app.js";
+        import { getDatabase, ref, set, update, remove, onValue } from "https://www.gstatic.com/firebasejs/9.6.0/firebase-database.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyCGOWOPnqw_fN09nhKJFLx-AtsEC39DiC0",
+            authDomain: "digital-hagira.firebaseapp.com",
+            databaseURL: "https://digital-hagira-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "digital-hagira",
+            storageBucket: "digital-hagira.appspot.com",
+            messagingSenderId: "29482319758",
+            appId: "1:29482319758:web:3b0d0bf0c81467ca866edf",
+            measurementId: "G-NR7P6G5R0T"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase(app);
+
+        // Text Slider Management
+        const textSliderForm = document.getElementById('text-slider-form');
+        textSliderForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const text = document.getElementById('text').value;
+            const newRef = ref(db, 'text-slider/' + Date.now());
+            set(newRef, { text })
+                .then(() => alert('Text added!'))
+                .catch((error) => console.error('Error adding text:', error));
+        });
+
+        // Load Text Slider List
+        const textSliderList = document.getElementById('text-slider-list');
+        onValue(ref(db, 'text-slider'), (snapshot) => {
+            textSliderList.innerHTML = '';
+            snapshot.forEach((childSnapshot) => {
+                const textItem = childSnapshot.val().text;
+                const div = document.createElement('div');
+                div.className = 'item';
+                div.textContent = textItem;
+                const deleteButton = document.createElement('button');
+                deleteButton.textContent = 'Delete';
+                deleteButton.onclick = () => {
+                    remove(childSnapshot.ref)
+                        .then(() => alert('Text deleted!'))
+                        .catch((error) => console.error('Error deleting text:', error));
+                };
+                div.appendChild(deleteButton);
+                textSliderList.appendChild(div);
+            });
+        });
+
+        // Image Slider Management
+        const imageSliderForm = document.getElementById('image-slider-form');
+        imageSliderForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const imageUrl = document.getElementById('image-url').value;
+            const newRef = ref(db, 'image-slider/' + Date.now());
+            set(newRef, { imageUrl })
+                .then(() => alert('Image added!'))
+                .catch((error) => console.error('Error adding image:', error));
+        });
+
+        // Load Image Slider List
+        const imageSliderList = document.getElementById('image-slider-list');
+        onValue(ref(db, 'image-slider'), (snapshot) => {
+            imageSliderList.innerHTML = '';
+            snapshot.forEach((childSnapshot) => {
+                const imageUrl = childSnapshot.val().imageUrl;
+                const div = document.createElement('div');
+                div.className = 'item';
+                const img = document.createElement('img');
+                img.src = imageUrl;
+                div.appendChild(img);
+                const deleteButton = document.createElement('button');
+                deleteButton.textContent = 'Delete';
+                deleteButton.onclick = () => {
+                    remove(childSnapshot.ref)
+                        .then(() => alert('Image deleted!'))
+                        .catch((error) => console.error('Error deleting image:', error));
+                };
+                div.appendChild(deleteButton);
+                imageSliderList.appendChild(div);
+            });
+        });
+
+        // Dining Information
+        const diningInfoForm = document.getElementById('dining-info-form');
+        diningInfoForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const info = document.getElementById('dining-info').value;
+            const breakfastTime = document.getElementById('breakfast-time').value;
+            const lunchTime = document.getElementById('lunch-time').value;
+            const dinnerTime = document.getElementById('dinner-time').value;
+            update(ref(db, 'dining-info'), { info, breakfast: breakfastTime, lunch: lunchTime, dinner: dinnerTime })
+                .then(() => alert('Dining info updated!'))
+                .catch((error) => console.error('Error updating dining info:', error));
+        });
+
+        // Dining Rules
+        const diningRulesForm = document.getElementById('dining-rules-form');
+        diningRulesForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const rules = document.getElementById('dining-rules').value;
+            update(ref(db, 'dining-rules'), { rules })
+                .then(() => alert('Dining rules updated!'))
+                .catch((error) => console.error('Error updating dining rules:', error));
+        });
+
+        // Staff Management
+        const staffForm = document.getElementById('staff-form');
+        staffForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = document.getElementById('staff-name').value;
+            const position = document.getElementById('staff-position').value;
+            const newRef = ref(db, 'staff/' + Date.now());
+            set(newRef, { name, position })
+                .then(() => alert('Staff added!'))
+                .catch((error) => console.error('Error adding staff:', error));
+        });
+
+        // Load Staff List
+        const staffList = document.getElementById('staff-list');
+        onValue(ref(db, 'staff'), (snapshot) => {
+            staffList.innerHTML = '';
+            snapshot.forEach((childSnapshot) => {
+                const staff = childSnapshot.val();
+                const div = document.createElement('div');
+                div.className = 'item';
+                div.textContent = `${staff.name} - ${staff.position}`;
+                const deleteButton = document.createElement('button');
+                deleteButton.textContent = 'Delete';
+                deleteButton.onclick = () => {
+                    remove(childSnapshot.ref)
+                        .then(() => alert('Staff deleted!'))
+                        .catch((error) => console.error('Error deleting staff:', error));
+                };
+                div.appendChild(deleteButton);
+                staffList.appendChild(div);
+            });
+        });
+
+        // Routine Management
+        const routineForm = document.getElementById('routine-form');
+        routineForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const meal = document.getElementById('meal').value;
+            const mealTime = document.getElementById('meal-time').value;
+            update(ref(db, 'dining-info'), { [meal]: mealTime })
+                .then(() => alert('Routine updated!'))
+                .catch((error) => console.error('Error updating routine:', error));
+        });
+
+        // Load Routine List
+        const routineTable = document.getElementById('routine-table').getElementsByTagName('tbody')[0];
+        onValue(ref(db, 'dining-info'), (snapshot) => {
+            routineTable.innerHTML = '';
+            const data = snapshot.val();
+            ['breakfast', 'lunch', 'dinner'].forEach((meal) => {
+                const time = data[meal];
+                if (time) {
+                    const row = routineTable.insertRow();
+                    row.insertCell(0).textContent = meal.charAt(0).toUpperCase() + meal.slice(1);
+                    row.insertCell(1).textContent = time;
+                    const actionsCell = row.insertCell(2);
+                    const deleteButton = document.createElement('button');
+                    deleteButton.textContent = 'Delete';
+                    deleteButton.onclick = () => {
+                        update(ref(db, 'dining-info'), { [meal]: null })
+                            .then(() => alert('Routine deleted!'))
+                            .catch((error) => console.error('Error deleting routine:', error));
+                    };
+                    actionsCell.appendChild(deleteButton);
+                }
+            });
+        });
+
+        // Attendance Management
+        const showStudentAttendanceButton = document.getElementById('show-student-attendance');
+        const showStaffAttendanceButton = document.getElementById('show-staff-attendance');
+        const attendanceList = document.getElementById('attendance-list');
+
+        showStudentAttendanceButton.addEventListener('click', () => {
+            onValue(ref(db, 'attendance/student'), (snapshot) => {
+                attendanceList.innerHTML = '';
+                snapshot.forEach((childSnapshot) => {
+                    const attendance = childSnapshot.val();
+                    const div = document.createElement('div');
+                    div.className = 'item';
+                    div.textContent = `${attendance.name} - ${attendance.status}`;
+                    attendanceList.appendChild(div);
+                });
+            });
+        });
+
+        showStaffAttendanceButton.addEventListener('click', () => {
+            onValue(ref(db, 'attendance/staff'), (snapshot) => {
+                attendanceList.innerHTML = '';
+                snapshot.forEach((childSnapshot) => {
+                    const attendance = childSnapshot.val();
+                    const div = document.createElement('div');
+                    div.className = 'item';
+                    div.textContent = `${attendance.name} - ${attendance.status}`;
+                    attendanceList.appendChild(div);
+                });
+            });
+        });
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('.text-slider').slick({
+                dots: true,
+                infinite: true,
+                speed: 300,
+                slidesToShow: 1,
+                adaptiveHeight: true
+            });
+
+            $('.image-slider').slick({
+                dots: true,
+                infinite: true,
+                speed: 300,
+                slidesToShow: 1,
+                adaptiveHeight: true
+            });
+        });
+    </script>
+
+</body>
+</html>
